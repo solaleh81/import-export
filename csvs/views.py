@@ -1,4 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .forms import CsvModelForm
+
 def upload_file_view(request):
-    return HttpResponse('drop a file here.')
+    form = CsvModelForm(request.POST or None, request.FILES or None)
+    return render(request, 'csvs/upload.html', context={'form': form})
